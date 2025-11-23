@@ -20,7 +20,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 const char* mqtt_server = "192.168.1.92"; 
-const char* topicRSSI = "capteurs/alpha/rssi";
+const String topicRSSI = "capteurs/rssi/" + String(WiFi.macAddress());
 
 void reconnect() {
   // Boucle jusqu'à la reconnexion
@@ -43,26 +43,19 @@ void reconnect() {
 class MyCallback: public NimBLEScanCallbacks {
     void onResult(const NimBLEAdvertisedDevice* advertisedDevice) override {
         if (advertisedDevice->haveServiceUUID() && mobileUUID.equals(advertisedDevice->getServiceUUID())) {
-            NimBLEUUID devUUID = advertisedDevice->getServiceUUID();
-            Serial.print("Found ServiceUUID: ");
-            Serial.println(devUUID.toString().c_str());
-            Serial.println("RSSI: " + String(advertisedDevice->getRSSI()));
-            Serial.println("");
-
-            // MQTT transmet des octets/texte, pas des int bruts par défaut
-            char rssiString[8];
-            dtostrf(advertisedDevice->getRSSI(), 1, 2, rssiString); 
-
-            Serial.print("Publication RSSI: ");
-            Serial.println(rssiString);
-
-            // 3. Publier sur le topic
-            client.publish(topicRSSI, rssiString);
+            // NimBLEUUID devUUID = advertisedDevice->getServiceUUID();
 
             // Filtrage Kalman
             float filteredRSSI = kalmanFilter.update((float)advertisedDevice->getRSSI());
             Serial.print("RSSI filtré (Kalman): ");
             Serial.println(filteredRSSI);
+
+            // MQTT transmet des octets/texte, pas des int bruts par défaut
+            char rssiString[8];
+            dtostrf(filteredRSSI, 8, 2, rssiString); 
+
+            // 3. Publier sur le topic
+            client.publish(topicRSSI.c_str(), rssiString);
         }
     }
 };
