@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.22.0",
+  "dependencies": {
+    "aedes": "^0.51.3",
+    "express": "^5.1.0",
+    "mqtt": "^5.14.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.5"
+  }
+}
