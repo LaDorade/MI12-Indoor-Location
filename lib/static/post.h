@@ -1,0 +1,1 @@
+void sendRSSI(int value);
