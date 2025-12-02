@@ -22,3 +22,24 @@ float Kalman::update(float measurement) {
 float Kalman::getEstimate() const {
     return estimate;
 }
+
+void Kalman::setQ(float q) {
+    Q = q;
+}
+
+void Kalman::setR(float r) {
+    R = r;
+}
+
+void Kalman::reset() {
+    estimate = 0.0f;
+    errorCovariance = 1.0f;
+}
+
+float Kalman::getQ() const {
+    return Q;
+}
+
+float Kalman::getR() const {
+    return R;
+}

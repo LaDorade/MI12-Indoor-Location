@@ -1,9 +1,8 @@
 #include <Arduino.h>
-#include <esp_now.h>
-#include <WiFi.h>
 
 #include <static.h>
 #include <mobile.h>
+#include <accessPoint.h>
 
 
 void setup() {

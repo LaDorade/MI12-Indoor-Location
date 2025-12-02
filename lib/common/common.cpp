@@ -1,3 +1,4 @@
+#ifndef ACCESS_POINT
 #include <WiFi.h>
 
 const char* ssid = "Freebox-956930";
@@ -12,4 +13,7 @@ void connectToWifi() {
     Serial.print(".");
   }
   Serial.println("\nConnecté au WiFi");
+  Serial.print("Adresse IP: ");
+  Serial.println(WiFi.localIP());
 }
+#endif
