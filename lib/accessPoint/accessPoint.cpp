@@ -7,8 +7,8 @@
 const char* ap_ssid     = "esp8266_ap";
 const char* ap_password = "testtest";
 
-IPAddress local_ip(192,168,0,1);
-IPAddress gateway(192,168,0,1);
+IPAddress local_IP(192,168,4,1);
+IPAddress gateway(192,168,4,1);
 IPAddress subnet(255,255,255,0);
 
 void start()
@@ -17,7 +17,7 @@ void start()
     Serial.println("\n[*] Creating AP");
 
     WiFi.mode(WIFI_AP);
-    WiFi.softAPConfig(local_ip, gateway, subnet);
+    Serial.println(WiFi.softAPConfig(local_IP, gateway, subnet) ? "Ready" : "Failed!");
     WiFi.softAP(ap_ssid, ap_password);
     
     Serial.print("[+] AP Created with IP Gateway ");

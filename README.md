@@ -34,12 +34,13 @@ Televerse into each ESP32 board and flash the corresponding code:
 ### Front
 
 ```bash
-cd app
+cd front
 (p)npm install
 (p)npm run dev
 ```
 
 ## Ressources
 
+- [Trilattération]()
 - [NimBLE]() A low power Bluetooth library for embedded systems.
 - [Kalman Filter]() A mathematical method for estimating the state of a system from noisy measurements.
